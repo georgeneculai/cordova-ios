@@ -513,9 +513,6 @@
     NSString* defaultWebViewEngineClass = [self.settings cordovaSettingForKey:@"CordovaDefaultWebViewEngine"];
     NSString* webViewEngineClass = [self.settings cordovaSettingForKey:@"CordovaWebViewEngine"];
 
-    if (!defaultWebViewEngineClass) {
-        defaultWebViewEngineClass = @"CDVUIWebViewEngine";
-    }
     if (!webViewEngineClass) {
         webViewEngineClass = defaultWebViewEngineClass;
     }

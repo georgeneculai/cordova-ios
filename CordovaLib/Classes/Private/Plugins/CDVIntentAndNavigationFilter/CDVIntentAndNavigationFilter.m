@@ -95,13 +95,8 @@
     return [[self class] filterUrl:url intentsWhitelist:self.allowIntentsWhitelist navigationsWhitelist:self.allowNavigationsWhitelist];
 }
 
-#if WK_WEB_VIEW_ONLY
 #define CDVWebViewNavigationTypeLinkClicked 0
 #define CDVWebViewNavigationTypeOther 5
-#else
-#define CDVWebViewNavigationTypeLinkClicked UIWebViewNavigationTypeLinkClicked
-#define CDVWebViewNavigationTypeOther UIWebViewNavigationTypeOther
-#endif
 
 + (BOOL)shouldOpenURLRequest:(NSURLRequest*)request navigationType:(CDVWebViewNavigationType)navigationType
 {
@@ -123,7 +118,7 @@
         case CDVIntentAndNavigationFilterValueNavigationAllowed:
             return YES;
         case CDVIntentAndNavigationFilterValueIntentAllowed:
-            // only allow-intent if it's a UIWebViewNavigationTypeLinkClicked (anchor tag) OR
+            // only allow-intent if it's a OldWebViewNavigationTypeLinkClicked (anchor tag) OR
             // it's a UIWebViewNavigationTypeOther, and it's an internal link
             if ([[self class] shouldOpenURLRequest:request navigationType:navigationType]){
                 [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
